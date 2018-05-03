@@ -7,7 +7,10 @@ server.use(express.static('public'));
 
 server.get('/', (req, res) =>
 Promise.all([
-    getContents('https://react-konzertportal-navbar.herokuapp.com/')
+    getContents('https://react-konzertportal-navbar.herokuapp.com/'),
+    getContents('https://react-konzertportal-featured.herokuapp.com/'),
+    getContents('https://react-konzertportal-concerts.herokuapp.com/'),
+    getContents('https://react-konzertportal-footer.herokuapp.com/')
 ]).then(responses =>
 res.render('index', { navbar: responses[0], featured: responses[1], concerts: responses[2], footer: responses[3]})
 ).catch(error =>
