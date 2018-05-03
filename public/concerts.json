@@ -1,0 +1,61 @@
+{
+  "concerts": [
+    {
+      "id": "1",
+      "name": "Linkin Park",
+      "events": ["23.02.", "25.02."],
+      "featured": true,
+      "featuredImage": "ny.jpg"
+    },
+    {
+      "id": "2",
+      "name": "Green Day",
+      "events": ["05.04.", "07.04."],
+      "featured": true,
+      "featuredImage": "chicago.jpg"
+    },
+    {
+      "id": "3",
+      "name": "Billy Talent",
+      "events": ["29.03.", "03.04."],
+      "featured": true,
+      "featuredImage": "la.jpg"
+    },
+    {
+      "id": "4",
+      "name": "RandomBand1",
+      "events": ["12.12.", "21.12."],
+      "featured": false
+    },
+    {
+      "id": "5",
+      "name": "RandomBand2",
+      "events": ["23.02.", "25.02."],
+      "featured": false
+    },
+    {
+      "id": "6",
+      "name": "RandomBand3",
+      "events": ["05.04.", "07.04."],
+      "featured": false
+    },
+    {
+      "id": "7",
+      "name": "RandomBand4",
+      "events": ["29.03.", "03.04."],
+      "featured": false
+    },
+    {
+      "id": "8",
+      "name": "RandomBand5",
+      "events": ["12.12.", "21.12."],
+      "featured": false
+    },
+    {
+      "id": "9",
+      "name": "RandomBand6",
+      "events": ["11.11.", "21.11."],
+      "featured": false
+    }
+  ]
+}

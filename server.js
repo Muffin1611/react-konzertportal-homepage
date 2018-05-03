@@ -3,12 +3,13 @@ const server = express();
 const request = require('request');
 
 server.set('view engine', 'ejs');
+server.use(express.static('public'));
 
 server.get('/', (req, res) =>
 Promise.all([
     getContents('https://react-konzertportal-navbar.herokuapp.com/')
 ]).then(responses =>
-res.render('index', { navbar: responses[0]})
+res.render('index', { navbar: responses[0], featured: responses[1], concerts: responses[2], footer: responses[3]})
 ).catch(error =>
 res.send(error.message)
 )
