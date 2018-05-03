@@ -1,30 +1,19 @@
 const express = require('express');
 const server = express();
 const request = require('request');
+const proxy = require('http-proxy-middleware');
 
 server.set('view engine', 'ejs');
-server.use(express.static('public'));
 
-server.get('/', (req, res) =>
-Promise.all([
-    getContents('https://react-konzertportal-navbar.herokuapp.com/'),
-    getContents('https://react-konzertportal-featured.herokuapp.com/'),
-    getContents('https://react-konzertportal-concerts.herokuapp.com/'),
-    getContents('https://react-konzertportal-footer.herokuapp.com/')
-]).then(responses =>
-res.render('index', { navbar: responses[0], featured: responses[1], concerts: responses[2], footer: responses[3]})
-).catch(error =>
-res.send(error.message)
-)
-);
+const createProxy = (path, target) =>
+server.use(path, proxy({ target, changeOrigin: true, pathRewrite: {[`^${path}`]: ''} }));
 
-const getContents = (url) => new Promise((resolve, reject) => {
-    request.get(url, (error, response, body) => {
-    if (error) return resolve("Error loading " + url + ": " + error.message);
+createProxy('/navbar', 'https://react-konzertportal-navbar.herokuapp.com/');
+createProxy('/featured', 'https://react-konzertportal-featured.herokuapp.com/');
+createProxy('/concerts', 'https://react-konzertportal-concerts.herokuapp.com/');
+createProxy('/footer', 'https://react-konzertportal-footer.herokuapp.com/');
 
-return resolve(body);
-});
-});
+server.get('/', (req, res) => res.render('index'));
 
 const port = process.env.PORT || 8080;
 server.listen(port, () => {
